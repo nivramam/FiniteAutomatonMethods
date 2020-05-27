@@ -1,0 +1,7 @@
+The idea for the Direct method is to build the syntac tree. From that we will find the firstpos, lastpos and followpos. This followpos will help in finding the states - the optimized number of states that are in the resulting DFA. 
+
+For building syntax tree, basic operations of a tree is needed - this is provided by the BTree.java functionality. BTree is helpful in genraating the tree nodes. 
+
+--
+until now
+--
