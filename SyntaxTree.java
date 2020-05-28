@@ -50,8 +50,30 @@ public class SyntaxTree {
             }
         }
     }
-    public void generateFLpos(){
-        
+    public void generateFLpos(SingleNTNode node){
+        if(node==null)
+        {
+            return;
+        }
+        if(node instanceof LeafNode)
+        {
+            LeafNode lnode = (LeafNode) node;
+            node.addToFirstPos(lnode.getNum());
+            node.addToLastPos(lnode.getNum());
+        }
+        else
+        {
+            SingleNTNode left = node.getLeftchild();
+            SingleNTNode right = node.getRightchild();
+            generateFLpos(left);
+            generateFLpos(right);
+//            switch(node.getSymbol()){
+//                case "|":
+//                    node.addAllToFirstPos(left.getFirstPos());
+//                    node.addAllToFirstPos(right.getFirstPos());
+//            }
+                    
+        }
     }
     public void generateFollowPos()
     {
