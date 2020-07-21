@@ -3,7 +3,6 @@ package javaapplication46;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
-
 /**
  *
  * @author lenovoN
@@ -118,28 +117,24 @@ public class SyntaxTree {
         }
         SingleNTNode left = node.getLeftchild();
         SingleNTNode right = node.getRightchild();
+        Stack<SingleNTNode> newstack = new Stack<>();
+        newstack.add(node);
+        newstack.add(left);
+        newstack.add(right);
         switch(node.getSymbol()){
             case "&":
-                //(btee.node);
+                op.doConcatenate(newstack);
                 break;
             case "*":
-                //
+                op.doStar(newstack);
                 break;
         }
         generateFollowPos(left);
         generateFollowPos(right);
     }
-    public SingleNTNode getRoot()
-    {
-        return this.root;
-    }
-    public List<Integer>[] getFollowPos(){
-        return this.followPos;
-    }    
-    public int getNumOfLeaves()
-    {
-        return this.numOfLeaves;
-    }
+    public SingleNTNode getRoot(){return this.root;}
+    public List<Integer>[] getFollowPos(){return this.followPos; }
+    public int getNumOfLeaves(){return this.numOfLeaves;}
 
     @Override
     public String toString() {
