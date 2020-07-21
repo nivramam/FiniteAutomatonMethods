@@ -11,7 +11,6 @@ import java.util.Set;
 public class SingleNTNode {
     String symbol_ofnode;
     SingleNTNode ancestor, leftchild, rightchild;
-    /*Set for firstpos and lastpos*/
     /*3 essentials for the Direct Method!*/    
     List<Integer> firstpos, lastpos;
     Integer number_of_node; //number of the node - convert from the String - symbol of node. 
@@ -23,61 +22,21 @@ public class SingleNTNode {
         this.lastpos = new ArrayList<>();
         nullable = false;
     }    
-    public void insertFirst(int number)
-    {
-        this.firstpos.add(number);
-    }
-    public void insertLast(int number)
-    {
-        this.lastpos.add(number);
-    }
-    public void insertWholeFirst(ArrayList set)
-    {
-        this.firstpos.addAll(set);
-    }
-    public void insertWholeLast(ArrayList set)
-    {
-        this.lastpos.addAll(set);
-    } 
+    public void insertFirst(int number){this.firstpos.add(number);}
+    public void insertLast(int number){this.lastpos.add(number);}  
     
-    public void setLeft(SingleNTNode left){
-        this.leftchild = left;       
-    }
+    public void setLeft(SingleNTNode left){this.leftchild = left;}
+    public void setRight(SingleNTNode right){this.rightchild = right;}
+    public void setParent(SingleNTNode parent){this.ancestor = parent;}
+
+    public SingleNTNode getLeftchild() {return leftchild;}
+    public SingleNTNode getRightchild() {return rightchild;}
+    public String getSymbol() {return symbol_ofnode;}
     
-    public void setRight(SingleNTNode right){
-        this.rightchild = right;       
-    }
-    
-    public void setParent(SingleNTNode parent){
-        this.ancestor = parent;      
-    }
-
-    public SingleNTNode getLeftchild() {
-        return leftchild;
-    }
-
-    public SingleNTNode getRightchild() {
-        return rightchild;
-    }
-
-    public String getSymbol() {
-        return symbol_ofnode;
-    }
-    public boolean isNullable(){
-        return nullable;
-    }
-    public void setNullable(boolean nullable)
-    {
-        this.nullable = nullable;
-    }
-    public void addToFirstPos(int number)
-    {
-        firstpos.add((Integer)number);
-    }
-    public void addToLastPos(int number)
-    {
-        lastpos.add((Integer)number);
-    }
+    public boolean isNullable(){return nullable;}
+    public void setNullable(boolean nullable){this.nullable = nullable;}
+    public void addToFirstPos(int number){firstpos.add((Integer)number);}
+    public void addToLastPos(int number){lastpos.add((Integer)number);}
     public Integer getNumberofNode(){
         this.number_of_node = Integer.valueOf(symbol_ofnode);
         return this.number_of_node;
@@ -91,7 +50,6 @@ public class SingleNTNode {
 class LeafNode extends SingleNTNode{
     private int num;
     List<Integer> followpos;
-    
     public LeafNode(String symbol, int num) {
         super(symbol);
         /*leaf node has 0 children*/
@@ -100,17 +58,8 @@ class LeafNode extends SingleNTNode{
         this.rightchild=null;
         followpos = new ArrayList<>();
     }
-    public List<Integer> getFollowpos() {
-        return followpos;
-    }
-    public void setFollowpos(List<Integer> followpos) {
-        this.followpos = followpos;
-    }
-    public int getNum()
-    {
-        return this.num;
-    }    
-    public void addToFollowPos(int number){
-        followpos.add((Integer)num);
-    }    
+    public List<Integer> getFollowpos() {return followpos;}
+    public void setFollowpos(List<Integer> followpos) {this.followpos = followpos;}
+    public int getNum(){ return this.num;} 
+    public void addToFollowPos(int number){ followpos.add((Integer)num); }    
 }
